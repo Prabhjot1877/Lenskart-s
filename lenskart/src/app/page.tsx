@@ -1,6 +1,6 @@
 "use client"
 import Head from 'next/head';
-import Navbar from './components/Navbar';
+import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
 
 export default function Home() {

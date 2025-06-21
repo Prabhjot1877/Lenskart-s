@@ -1,8 +1,13 @@
 {
   "app": {
     "[project]/src/app/page": [
+<<<<<<< HEAD
       "static/media/or3nQ6H_1_WfwkMZI_qYFrcdmhHkjko-s.p.be19f591.woff2",
       "static/media/gyByhwUxId8gMEwcGFWNOITd-s.p.da1ebef7.woff2"
+=======
+      "static/media/gyByhwUxId8gMEwcGFWNOITd-s.p.da1ebef7.woff2",
+      "static/media/or3nQ6H_1_WfwkMZI_qYFrcdmhHkjko-s.p.be19f591.woff2"
+>>>>>>> 9a6ad3702b1ff6b42c4c279168f449556c7bdc92
     ]
   },
   "appUsingSizeAdjust": true,

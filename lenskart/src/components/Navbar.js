@@ -36,7 +36,7 @@ export default function Navbar() {
             <Link href="/about" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
               About
             </Link>
-            <Link href="/contact" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
+            <Link href="/pages/contacts" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
               Contact
             </Link>
             <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-300">

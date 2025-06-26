@@ -30,7 +30,7 @@ export default function Navbar() {
             <Link href="/" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
               Home
             </Link>
-            <Link href="/products" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
+            <Link href="/pages/product" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
               Products
             </Link>
             <Link href="/about" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">

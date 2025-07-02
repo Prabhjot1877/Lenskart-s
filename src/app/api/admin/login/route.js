@@ -1,4 +1,4 @@
-import admin from '../../../../models/adminmodel'
+import Admin from '../../../../models/adminmodel'
 import connectDB from '../../../../lib/dbcollection'
 import jwt from 'jsonwebtoken'
 

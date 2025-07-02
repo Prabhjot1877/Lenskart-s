@@ -16,32 +16,29 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-blue-800 shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors duration-300">
-              <span className="text-indigo-600">Shop</span>Next
+            <Link href="/" className="text-5xl font-bold text-yellow-500 hover:text-indigo-600 transition-colors duration-300">
+              <span className="text-yellow-500">Shop Next</span>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
+            <Link href="/" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
               Home
             </Link>
-            <Link href="/pages/products" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
+            <Link href="/pages/products" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
               Products
             </Link>
-            <Link href="/pages/about" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
+            <Link href="/pages/about" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
               About
             </Link>
-            <Link href="/pages/contacts" className="text-gray-900 hover:text-indigo-600 transition-colors duration-300 font-medium">
+            <Link href="/pages/contacts" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
               Contact
             </Link>
-            <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-300">
-              Sign In
-            </button>
           </div>
           
           {/* Mobile menu button */}

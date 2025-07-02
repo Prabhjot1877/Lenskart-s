@@ -41,7 +41,8 @@ const RegisterPage = () => {
       }
 
       // Registration successful
-      router.push('/dashboard')
+      router.push('/prabjot')
+      localStorage.setItem('adminInfo', JSON.stringify(data));
     } catch (err) {
       setError(err.message)
       setLoading(false)

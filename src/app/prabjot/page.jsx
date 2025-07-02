@@ -7,8 +7,8 @@ import React from 'react';
 
 export default function AddProduct() {
   const router = useRouter();
-  const motionDivRef = React.useRef<HTMLDivElement>(null);
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const motionDivRef = React.useRef(null);
+  const formRef = React.useRef(null);
   const isInView = useInView(motionDivRef, { once: false, amount: 0.1 });
 
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ export default function AddProduct() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [activeField, setActiveField] = useState<string | null>(null);
+  const [activeField, setActiveField] = useState(null);
 
   // Enhanced animations
   const container = {
@@ -49,7 +49,7 @@ export default function AddProduct() {
       y: 0,
       scale: 1,
       transition: {
-        type: 'spring' as const,
+        type: 'spring',
         stiffness: 100,
         damping: 10,
         mass: 1
@@ -64,7 +64,7 @@ export default function AddProduct() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -72,7 +72,7 @@ export default function AddProduct() {
     }));
   };
 
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNumberChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -80,7 +80,7 @@ export default function AddProduct() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
@@ -101,7 +101,7 @@ export default function AddProduct() {
       }
 
       setTimeout(() => router.push('/admin/products'), 2000);
-    } catch (err: any) {
+    } catch (err) {
       setError('Failed to add product. Please try again.');
       // Shake animation on error
       if (formRef.current) {

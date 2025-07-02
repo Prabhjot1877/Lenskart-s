@@ -35,7 +35,7 @@ export default function AdminLogin() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
@@ -53,7 +53,8 @@ export default function AdminLogin() {
       const data = await response.json();
 
       if (response.ok) {
-        router.push('/admin/dashboard');
+        localStorage.setItem('adminInfo', JSON.stringify(data));
+        router.push('/prabjot');
       } else {
         setError(data.message || 'Login failed');
       }

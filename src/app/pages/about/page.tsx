@@ -181,67 +181,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Team Section */}
-          <motion.div
-            variants={staggerContainer}
-            className="mb-16"
-          >
-            <motion.h2
-              variants={slideUp}
-              className="text-3xl font-bold text-center text-gray-900 mb-12"
-            >
-              Meet The Team
-            </motion.h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                {
-                  name: "Alex Johnson",
-                  role: "Founder & CEO",
-                  bio: "Visionary leader with 10+ years in AI and content creation.",
-                  img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                },
-                {
-                  name: "Maria Garcia",
-                  role: "CTO",
-                  bio: "Tech innovator specializing in machine learning applications.",
-                  img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                },
-                {
-                  name: "James Chen",
-                  role: "Head of Design",
-                  bio: "Creative director with a passion for user-centered design.",
-                  img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                },
-                {
-                  name: "Sarah Williams",
-                  role: "Product Manager",
-                  bio: "Bridges the gap between technology and user needs.",
-                  img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                }
-              ].map((member, index) => (
-                <motion.div
-                  key={index}
-                  variants={slideUp}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg"
-                >
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={member.img}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
-                    <p className="text-purple-600 font-medium mb-2">{member.role}</p>
-                    <p className="text-gray-600">{member.bio}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
+         
           {/* CTA Section */}
           <motion.div
             variants={staggerContainer}

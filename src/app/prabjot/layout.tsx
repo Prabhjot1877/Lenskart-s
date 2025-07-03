@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <AdminRouteProtect>
           {children}
-        </AdminRouteProtect>
+          </AdminRouteProtect>
       </body>
     </html>
   );

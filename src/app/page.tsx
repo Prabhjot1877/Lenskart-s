@@ -25,7 +25,7 @@ export default function Home() {
         <section className={`relative bg-gradient-to-r from-indigo-500 to-purple-600 text-white overflow-hidden transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
             <div className="relative z-10">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">Welcome to ShopNext</h1>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">Welcome to LensCrafter Hub</h1>
               <p className="text-xl md:text-2xl mb-8 max-w-2xl animate-fadeIn delay-100">
                 Discover amazing products at unbeatable prices. Quality you can trust, service you can rely on.
               </p>

@@ -5,7 +5,6 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  
   description: {
     type: String,
   },
@@ -23,9 +22,16 @@ const productSchema = new mongoose.Schema({
   },
   images: [
     {
-      type: String, // URLs to the images
+      url: {
+        type: String, // Cloudinary image URL
+        required: true,
+      },
+      publicId: {
+        type: String, // Cloudinary public ID for image management (e.g., deletion)
+        required: true,
+      },
     },
-  ],
+  ], // This array can hold any number of images
   stock: {
     type: Number,
     default: 0,

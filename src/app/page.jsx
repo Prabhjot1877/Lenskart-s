@@ -1,153 +1,233 @@
 "use client"
-import Head from 'next/head';
-import Navbar from '../components/Navbar';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-export default function Home() {
-  const [loaded, setLoaded] = useState(false);
+const HomePage = () => {
+  const router = useRouter();
 
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
+  // Manually added products data
+  const products = [
+    {
+      _id: '1',
+      name: 'Classic Aviator',
+      brand: 'Ray-Ban',
+      price: 149.99,
+      images: ['/number1.png'], 
+      description: 'Timeless aviator style with UV protection lenses'
+    },
+    {
+      _id: '2',
+      name: 'Modern Round',
+      brand: 'Warby Parker',
+      price: 129.99,
+      images: ['/number2.png'],
+      description: 'Contemporary round frames with lightweight design'
+    },
+    {
+      _id: '3',
+      name: 'Bold Square',
+      brand: 'Oakley',
+      price: 179.99,
+      images: ['/number3.png'],
+      description: 'Durable square frames with impact-resistant lenses'
+    },
+    {
+      _id: '4',
+      name: 'Vintage Cat-Eye',
+      brand: 'Persol',
+      price: 199.99,
+      images: ['/number4.png'],
+      description: 'Retro-inspired cat-eye frames with premium acetate'
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Head>
-        <title>ShopNext - Modern E-commerce</title>
-        <meta name="description" content="Modern e-commerce platform built with Next.js" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Navbar />
-
-      <main>
-        {/* Hero Section */}
-        <section className={`relative bg-gradient-to-r from-indigo-500 to-purple-600 text-white overflow-hidden transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-            <div className="relative z-10">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">Welcome to LensCrafter Hub</h1>
-              <p className="text-xl md:text-2xl mb-8 max-w-2xl animate-fadeIn delay-100">
-                Discover amazing products at unbeatable prices. Quality you can trust, service you can rely on.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 animate-fadeIn delay-200">
-                <button className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
-                  Shop Now
+      {/* Hero Section - Updated layout */}
+      <div className="relative bg-gray-900 w-full">
+        {/* Text content with backdrop blur */}
+        <div className="relative z-10 w-full bg-gray-900/80 backdrop-blur-sm py-16 sm:py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <motion.h1 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl"
+              >
+                <span className="block">Elevate Your Vision</span>
+                <span className="block text-indigo-400">With Style</span>
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+              >
+                Discover our premium collection of stylish and comfortable eyewear for every occasion. Perfect vision meets perfect style.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="mt-8 flex justify-center"
+              >
+                <button
+                  onClick={() => router.push('pages/products')}
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300"
+                >
+                  Shop Collection
                 </button>
-                <button className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors duration-300 transform hover:scale-105">
-                  Learn More
-                </button>
-              </div>
+              </motion.div>
             </div>
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-300 rounded-full opacity-20 animate-pulse"></div>
-            <div className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-300 rounded-full opacity-20 animate-pulse delay-500"></div>
           </div>
-        </section>
+        </div>
+        
+        {/* Hero image - full width */}
+        <div className="absolute inset-0 w-full h-auto">
+          <Image
+            src="/HeroPicture.png"
+            alt="Stylish eyewear collection"
+            fill
+            className="object-cover opacity-80"
+            priority
+            quality={100}
+          />
+        </div>
+      </div>
 
-        {/* Featured Products */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Featured Products - Improved card layout */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Check out our handpicked selection of premium products
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Featured Collection
+            </h2>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+              Our most popular designs this season
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div 
-                key={item}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((product) => (
+              <motion.div
+                key={product._id}
+                whileHover={{ y: -5, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300"
               >
-                <div className="h-64 bg-gray-200 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-400 animate-pulse"></div>
+                <div className="aspect-square w-full relative bg-gray-100">
+                  <Image
+                    src={product.images[0]}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-4"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Product {item}</h3>
-                  <p className="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div className="p-4">
+                  <h3 className="text-lg font-medium text-gray-900 mb-1">
+                    <button 
+                      onClick={() => router.push(`/product?id=${product._id}`)}
+                      className="focus:outline-none"
+                    >
+                      {product.name}
+                    </button>
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-2">{product.brand}</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold text-indigo-600">${(99 + item * 10).toFixed(2)}</span>
-                    <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-300">
-                      Add to Cart
+                    <p className="text-lg font-semibold text-gray-900">${product.price}</p>
+                    <button className="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
+                      View Details
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105">
-              View All Products
-            </button>
+          <div className="mt-16 text-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push('pages/products')}
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300"
+            >
+              View Full Collection
+              <svg xmlns="http://www.w3.org/2000/svg" className="ml-3 -mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </motion.button>
           </div>
-        </section>
+        </motion.div>
+      </div>
 
-        {/* Banner Section */}
-        <section className="bg-gray-900 text-white py-16 mb-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold mb-6">Summer Sale!</h2>
-              <p className="text-xl mb-8 max-w-3xl mx-auto">
-                Get up to 50% off on selected items. Limited time offer. Don't miss out!
-              </p>
-              <div className="flex justify-center">
-                <div className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-lg font-bold animate-bounce">
-                  <span className="mr-2">⏳</span> Ends in 3 days!
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
+      {/* Features Section */}
+      <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">ShopNext</h3>
-              <p className="text-gray-400">
-                Your one-stop shop for all your needs. Quality products, exceptional service.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Products</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Customer Service</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">FAQs</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Shipping Policy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Returns & Refunds</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Newsletter</h4>
-              <p className="text-gray-400 mb-4">Subscribe to get updates on new arrivals and special offers.</p>
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="px-4 py-2 w-full rounded-l-md text-gray-900 focus:outline-none"
-                />
-                <button className="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700 transition-colors duration-300">
-                  Subscribe
-                </button>
-              </div>
-            </div>
+          <div className="lg:text-center">
+            <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Why Choose Us</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Premium Eyewear Experience
+            </p>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              We combine style, comfort, and quality to give you the perfect vision solution.
+            </p>
           </div>
-          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} ShopNext. All rights reserved.</p>
+
+          <div className="mt-10">
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  name: 'Premium Materials',
+                  description: 'Our frames are crafted from high-quality acetate and durable metals for long-lasting wear.',
+                  icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+                },
+                {
+                  name: 'UV Protection',
+                  description: 'All our lenses come with 100% UV protection to safeguard your eyes from harmful rays.',
+                  icon: 'M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z'
+                },
+                {
+                  name: 'Free Shipping',
+                  description: 'Enjoy free shipping on all orders over $50 with our fast and reliable delivery service.',
+                  icon: 'M3 3a1 1 0 000 2h18a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3z'
+                },
+              ].map((feature, index) => (
+                <motion.div
+                  key={feature.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                  className="pt-6"
+                >
+                  <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full">
+                    <div className="-mt-6">
+                      <div>
+                        <span className="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                          <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={feature.icon} />
+                          </svg>
+                        </span>
+                      </div>
+                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">{feature.name}</h3>
+                      <p className="mt-5 text-base text-gray-500">{feature.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-      </footer>
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;

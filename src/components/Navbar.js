@@ -1,11 +1,12 @@
 "use client"
 import Link from 'next/link';
-
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,37 +16,66 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/pages/products-page' },
+    { name: 'About', path: '/pages/about' },
+    { name: 'Contact', path: '/pages/contacts' },
+  ];
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-blue-800 shadow-md py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-gray-900 shadow-lg py-2' : 'bg-gray-900/90 py-4 backdrop-blur-sm'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="text-5xl font-bold text-yellow-500 hover:text-indigo-600 transition-colors duration-300">
-              <span className="text-yellow-500">Premium Eyewear</span>
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center"
+          >
+            <Link href="/" className="text-2xl font-bold text-white">
+              Premium<span className="text-gray-300">Eyewear</span>
             </Link>
-          </div>
-          
+          </motion.div>
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
-              Home
-            </Link>
-            <Link href="/pages/products" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
-              Products
-            </Link>
-            <Link href="/pages/about" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
-              About
-            </Link>
-            <Link href="/pages/contacts" className="text-white hover:text-indigo-600 transition-colors duration-300 font-medium">
-              Contact
-            </Link>
+          <div className="hidden md:flex items-center space-x-6">
+            {navLinks.map((link) => (
+              <motion.div
+                key={link.name}
+                onHoverStart={() => setActiveLink(link.name)}
+                onHoverEnd={() => setActiveLink(null)}
+                className="relative"
+              >
+                <Link
+                  href={link.path}
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${activeLink === link.name ? 'text-white' : 'text-gray-300 hover:text-white'}`}
+                >
+                  {link.name}
+                </Link>
+                {activeLink === link.name && (
+                  <motion.div
+                    layoutId="navUnderline"
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-white"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  />
+                )}
+              </motion.div>
+            ))}
           </div>
-          
+
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <motion.div 
+            className="md:hidden"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-900 hover:text-indigo-600 focus:outline-none"
+              className="text-white focus:outline-none"
+              aria-label="Toggle menu"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isOpen ? (
@@ -55,30 +85,41 @@ export default function Navbar() {
                 )}
               </svg>
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
-      
+
       {/* Mobile Navigation */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white shadow-lg">
-          <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50 transition-colors duration-300">
-            Home
-          </Link>
-          <Link href="/products" className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50 transition-colors duration-300">
-            Products
-          </Link>
-          <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50 transition-colors duration-300">
-            About
-          </Link>
-          <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50 transition-colors duration-300">
-            Contact
-          </Link>
-          <button className="w-full mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-300">
-            Sign In
-          </button>
-        </div>
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden bg-gray-800 shadow-lg"
+          >
+            <div className="px-2 pt-2 pb-4 space-y-2">
+              {navLinks.map((link) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Link
+                    href={link.path}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

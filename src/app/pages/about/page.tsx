@@ -35,7 +35,7 @@ export default function About() {
         initial="hidden"
         animate="visible"
         variants={fadeIn}
-        className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8"
+        className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8 pt-30"
       >
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}

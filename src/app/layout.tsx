@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/src/components/Navbar";
+import Footer from "@/src/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Lens Crafter Hub",
   description: "This is my First E-commerce Website",
+
 };
 
 export default function RootLayout({
@@ -27,8 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      
+        <Navbar/>
         {children}
+        <Footer/>
         
       </body>
     </html>

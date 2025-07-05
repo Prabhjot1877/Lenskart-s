@@ -21,7 +21,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-5xl font-bold text-yellow-500 hover:text-indigo-600 transition-colors duration-300">
-              <span className="text-yellow-500">Shop Next</span>
+              <span className="text-yellow-500">Premium Eyewear</span>
             </Link>
           </div>
           

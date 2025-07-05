@@ -8,7 +8,7 @@ export async function GET(request) {
     
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '12');
+    const limit = parseInt(searchParams.get('limit') || '8');
     const skip = (page - 1) * limit;
 
     const products = await Product.find()

@@ -25,7 +25,7 @@ export async function POST(req) {
     const gender = formData.get('gender');
     const color = formData.get('color');
     const material = formData.get('material');
-    const images = JSON.parse(formData.get('images') || '[]'); // Expecting array of { url, publicId }
+    const images = JSON.parse(formData.get('images') || '[]');
 
     // Validate required fields
     if (!name || !price || !category) {
@@ -35,6 +35,43 @@ export async function POST(req) {
       );
     }
 
+    // Validate enum fields
+    const validCategories = ['Eyeglasses', 'Sunglasses', 'Contact Lenses', 'Accessories'];
+    if (category && !validCategories.includes(category)) {
+      return NextResponse.json(
+        { error: `Category must be one of: ${validCategories.join(', ')}` },
+        { status: 400 }
+      );
+    }
+
+    const validFrameTypes = ['Full Rim', 'Half Rim', 'Rimless'];
+    if (frameType && !validFrameTypes.includes(frameType)) {
+      return NextResponse.json(
+        { error: `Frame type must be one of: ${validFrameTypes.join(', ')}` },
+        { status: 400 }
+      );
+    }
+
+    const validGenders = ['Men', 'Women', 'Unisex'];
+    if (gender && !validGenders.includes(gender)) {
+      return NextResponse.json(
+        { error: `Gender must be one of: ${validGenders.join(', ')}` },
+        { status: 400 }
+      );
+    }
+
+    // Validate images array
+    if (images.length > 0) {
+      for (const image of images) {
+        if (!image.url || !image.publicId) {
+          return NextResponse.json(
+            { error: 'Each image must have a url and publicId' },
+            { status: 400 }
+          );
+        }
+      }
+    }
+
     // Create product
     const product = new Product({
       name,
@@ -42,12 +79,15 @@ export async function POST(req) {
       price,
       category,
       brand,
-      images, 
+      images,
       stock,
       frameType,
       gender,
       color,
       material,
+      rating: 0,
+      numReviews: 0,
+      reviews: [],
     });
 
     await product.save();

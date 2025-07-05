@@ -23,15 +23,15 @@ const productSchema = new mongoose.Schema({
   images: [
     {
       url: {
-        type: String, // Cloudinary image URL
+        type: String, 
         required: true,
       },
       publicId: {
-        type: String, // Cloudinary public ID for image management (e.g., deletion)
+        type: String, 
         required: true,
       },
     },
-  ], // This array can hold any number of images
+  ], 
   stock: {
     type: Number,
     default: 0,
@@ -56,11 +56,18 @@ const productSchema = new mongoose.Schema({
   },
   reviews: [
     {
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      comment: String,
-      rating: Number,
+      rating: {
+        type: Number,
+        min: 1,
+        max: 4,
+        required: true,
+      },
     },
   ],
+  numReviews: {
+    type: Number,
+    default: 0,
+  },
 }, {
   timestamps: true,
 });

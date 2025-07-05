@@ -389,7 +389,7 @@ export default function ProductsPage() {
                           <div className="flex justify-between items-start mb-2">
                             <h2 className="text-lg font-semibold text-gray-900 line-clamp-2">
                               {product.name}
-                            </2>
+                            </h2>
                             <span className="text-lg font-bold text-blue-600 whitespace-nowrap ml-2">
                               ₹{product.price.toFixed(2)}
                             </span>
@@ -497,3 +497,17 @@ export default function ProductsPage() {
                   className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-all ${
                     pagination.currentPage === pagination.totalPages || loading
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      : 'bg-gray-100 hover:bg-gray-200 text-gray-700 hover:shadow-sm'
+                  }`}
+                >
+                  <FiChevronRight className="w-4 h-4" />
+                  <span>Next</span>
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}

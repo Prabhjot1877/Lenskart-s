@@ -44,7 +44,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-24">
       {/* Hero Section - Updated layout */}
       <div className="relative bg-gray-900 w-full">
         {/* Text content with backdrop blur */}
@@ -142,10 +142,7 @@ const HomePage = () => {
                   </h3>
                   <p className="text-sm text-gray-500 mb-2">{product.brand}</p>
                   <div className="flex justify-between items-center">
-                    <p className="text-lg font-semibold text-gray-900">${product.price}</p>
-                    <button className="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
-                      View Details
-                    </button>
+                    <p className="text-lg font-semibold text-gray-900">₹{product.price}</p>
                   </div>
                 </div>
               </motion.div>

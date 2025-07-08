@@ -152,7 +152,7 @@ export default function ProductsPage() {
     <motion.div
       key={index}
       variants={item}
-      className="border rounded-xl overflow-hidden shadow-sm bg-white/50 backdrop-blur-sm"
+      className="border rounded-xl overflow-hidden shadow-sm bg-white/50 backdrop-blur-sm pt-22"
     >
       <div className="relative h-64 bg-gradient-to-r from-gray-100 to-gray-200 animate-pulse rounded-t-xl"></div>
       <div className="p-4 space-y-3">

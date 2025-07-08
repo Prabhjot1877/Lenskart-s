@@ -349,7 +349,7 @@ export default function ProductsPage() {
                                   <button
                                     onClick={(e) => handleAddToCart(e, product)}
                                     className="bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-                                    aria-label="Add to cart"
+                                    aria-label="Buy Now"
                                   >
                                     <FiShoppingCart className="w-5 h-5" />
                                   </button>

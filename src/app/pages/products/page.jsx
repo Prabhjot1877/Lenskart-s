@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight, FiStar, FiSearch } from 'react-icons/fi';
 import Navbar from '@/src/components/Navbar';
 
-export default function ProductsPage() {
+export default function ProductListingPage() {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({
     currentPage: 1,
@@ -48,7 +48,6 @@ export default function ProductsPage() {
         setPagination(data.pagination);
         setError(null);
 
-        // Initialize active image index for each product
         const initialIndices = {};
         data.products.forEach((product) => {
           initialIndices[product._id] = 0;
@@ -71,7 +70,7 @@ export default function ProductsPage() {
 
   useEffect(() => {
     fetchProducts(1, filters);
-  }, []);
+  }, [filters]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {
@@ -99,7 +98,6 @@ export default function ProductsPage() {
       frameType: '',
       search: '',
     });
-    fetchProducts(1, { category: '', gender: '', frameType: '', search: '' });
     if (searchInputRef.current) {
       searchInputRef.current.value = '';
     }
@@ -123,7 +121,6 @@ export default function ProductsPage() {
     });
   };
 
-  // Animation variants
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -152,16 +149,16 @@ export default function ProductsPage() {
     <motion.div
       key={index}
       variants={item}
-      className="border rounded-xl overflow-hidden shadow-sm bg-white/50 backdrop-blur-sm pt-22"
+      className="border rounded-xl overflow-hidden shadow-sm bg-white/50 backdrop-blur-sm"
     >
-      <div className="relative h-64 bg-gradient-to-r from-gray-100 to-gray-200 animate-pulse rounded-t-xl"></div>
-      <div className="p-4 space-y-3">
-        <div className="h-5 bg-gray-200 rounded-full w-3/4 animate-pulse"></div>
-        <div className="h-4 bg-gray-200 rounded-full w-1/2 animate-pulse"></div>
-        <div className="h-4 bg-gray-200 rounded-full w-1/3 animate-pulse"></div>
-        <div className="flex justify-between mt-4">
-          <div className="h-6 bg-gray-200 rounded-full w-1/4 animate-pulse"></div>
-          <div className="h-6 bg-gray-200 rounded-full w-1/3 animate-pulse"></div>
+      <div className="relative h-64 bg-gray-200 animate-pulse rounded-t-xl"></div>
+      <div className="p-5 space-y-3">
+        <div className="h-5 bg-gray-200 rounded-full w-3/4"></div>
+        <div className="h-4 bg-gray-200 rounded-full w-1/2"></div>
+        <div className="h-3-4 bg-gray-200 rounded-full w-1/3"></div>
+        <div className="flex justify-between mt-3">
+          <div className="h-6 bg-gray-200 rounded-lg w-1/4"></div>
+          <div className="h-6 bg-gray-200 rounded-lg w-1/3"></div>
         </div>
       </div>
     </motion.div>
@@ -172,36 +169,31 @@ export default function ProductsPage() {
       <Navbar />
       <div className="container mx-auto px-4 py-12">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, type: 'spring' }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-            Discover Our Collection
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-gray-600 mb-4">Discover Our Collection</h1>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
             Explore our premium selection of products designed to elevate your experience.
           </p>
         </motion.div>
 
-        {/* Filter Section */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-10 bg-white rounded-xl shadow-md p-6 border border-gray-200"
+          className="mb-10 bg-white rounded-xl shadow-sm p-6 border border-gray-200"
         >
           <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Category
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
               <select
                 name="category"
                 value={filters.category}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">All Categories</option>
                 <option value="Eyeglasses">Eyeglasses</option>
@@ -211,14 +203,12 @@ export default function ProductsPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Gender
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
               <select
                 name="gender"
                 value={filters.gender}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">All Genders</option>
                 <option value="Men">Men</option>
@@ -227,14 +217,12 @@ export default function ProductsPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Frame Type
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Frame Type</label>
               <select
                 name="frameType"
                 value={filters.frameType}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">All Frame Types</option>
                 <option value="Full Rim">Full Rim</option>
@@ -244,9 +232,7 @@ export default function ProductsPage() {
             </div>
             <div className="flex items-end gap-2">
               <div className="flex-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Search
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
                 <div className="relative">
                   <input
                     type="text"
@@ -255,7 +241,7 @@ export default function ProductsPage() {
                     value={filters.search}
                     onChange={handleFilterChange}
                     placeholder="Search by name or brand..."
-                    className="w-full px-3 py-2 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                    className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                   />
                   <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
@@ -264,7 +250,7 @@ export default function ProductsPage() {
                 type="submit"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
               >
                 Apply
               </motion.button>
@@ -275,7 +261,7 @@ export default function ProductsPage() {
               onClick={handleClearFilters}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-4 text-sm text-blue-600 hover:text-blue-700 underline"
+              className="mt-4 text-blue-600 hover:text-blue-700 underline text-sm"
             >
               Clear Filters
             </motion.button>
@@ -286,12 +272,12 @@ export default function ProductsPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl max-w-md mx-auto text-center shadow-sm"
+            className="bg-red-100 border border-red-300 text-red-700 px-4 py-4 rounded-lg text-center max-w-md mx-auto"
           >
             <p className="mb-3">{error}</p>
             <button
               onClick={() => fetchProducts(pagination.currentPage, filters)}
-              className="mt-2 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-sm transition-all duration-300 shadow hover:shadow-md"
+              className="mt-2 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md text-sm"
             >
               Retry
             </button>
@@ -301,10 +287,10 @@ export default function ProductsPage() {
             <motion.div
               variants={container}
               initial="hidden"
-              animate={loading ? 'hidden' : 'show'}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              animate={loading ? 'hidden' : 'visible'}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {loading ? (
                   loadingSkeleton
                 ) : (
@@ -312,108 +298,85 @@ export default function ProductsPage() {
                     <motion.div
                       key={product._id}
                       variants={item}
-                      whileHover={{ y: -8, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                      className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                      whileHover={{ y: -5 }}
+                      className="bg-white rounded-lg shadow-md overflow-hidden"
                     >
-                      <Link href={`/products/${product._id}`} className="block">
-                        <div className="relative h-64 group">
+                      <Link href="/products/${product._id}">
+                        <div className="relative h-36">
                           {product.images && product.images.length > 0 ? (
                             <>
                               <Image
-                                src={product.images[activeImageIndex[product._id]]?.url || '/placeholder-product.jpg'}
+                                src={product.images[activeImageIndex[product._id]]?.url || '/placeholder-image.jpg'}
                                 alt={product.name}
                                 fill
-                                className="object-cover transition-opacity duration-500"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                priority={products.indexOf(product) < 4}
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 25vw"
                               />
-                              {/* Image navigation dots */}
                               {product.images.length > 1 && (
-                                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
-                                  {product.images.map((_, idx) => (
+                                <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                                  {product.images.map((_, i) => (
                                     <button
-                                      key={idx}
+                                      key={i}
                                       onClick={(e) => {
                                         e.preventDefault();
-                                        e.stopPropagation();
                                         setActiveImageIndex((prev) => ({
                                           ...prev,
-                                          [product._id]: idx,
+                                          [product._id]: i,
                                         }));
                                       }}
-                                      className={`w-2 h-2 rounded-full transition-all ${
-                                        activeImageIndex[product._id] === idx ? 'bg-white w-3' : 'bg-white/50'
-                                      }`}
-                                      aria-label={`View image ${idx + 1}`}
+                                      className={`w-2 h-2 rounded-full ${activeImageIndex[product._id] === i ? 'bg-blue-500' : 'bg-gray-300'}`}
                                     />
                                   ))}
                                 </div>
                               )}
                             </>
                           ) : (
-                            <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-t-2xl">
-                              <span className="text-gray-400">No Image Available</span>
+                            <div className="h-full bg-gray-100 flex items-center justify-center">
+                              <span className="text-gray-500">No Image</span>
                             </div>
                           )}
-                          {/* Navigation arrows */}
-                          {product.images && product.images.length > 1 && (
+                          {product.images.length > 1 && (
                             <>
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();
-                                  e.stopPropagation();
                                   handlePrevImage(product._id);
                                 }}
-                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                                aria-label="Previous image"
+                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full"
                               >
-                                <FiChevronLeft className="w-4 h-4" />
+                                <FiChevronLeft />
                               </button>
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();
-                                  e.stopPropagation();
                                   handleNextImage(product._id);
                                 }}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                                aria-label="Next image"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full"
                               >
-                                <FiChevronRight className="w-4 h-4" />
+                                <FiChevronRight />
                               </button>
                             </>
                           )}
                         </div>
-                        <div className="p-5">
-                          <div className="flex justify-between items-start mb-2">
-                            <h2 className="text-lg font-semibold text-gray-900 line-clamp-2">
-                              {product.name}
-                            </h2>
-                            <span className="text-lg font-bold text-blue-600 whitespace-nowrap ml-2">
-                              ₹{product.price.toFixed(2)}
-                            </span>
+                        <div className="p-4">
+                          <div className="flex justify-between mb-2">
+                            <h2 className="text-lg font-semibold">{product.name}</h2>
+                            <span className="text-blue-600">₹${product.price.toFixed(2)}</span>
                           </div>
-                          <div className="flex flex-wrap gap-1.5 mb-3">
-                            <span className="text-xs px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full capitalize">
-                              {product.category}
-                            </span>
+                          <div className="flex gap-2 mb-2">
+                            <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">{product.category}</span>
                             {product.brand && (
-                              <span className="text-xs px-2.5 py-1 bg-purple-50 text-purple-700 rounded-full">
-                                {product.brand}
-                              </span>
+                              <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">{product.brand}</span>
                             )}
                           </div>
                           <div className="flex items-center">
-                            <div className="flex items-center mr-2">
-                              {[...Array(5)].map((_, i) => (
-                                <FiStar
-                                  key={i}
-                                  className={`w-4 h-4 ${i < Math.round(product.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
-                                />
-                              ))}
-                            </div>
-                            <span className="text-sm text-gray-500">
+                            {[...Array(5)].map((_, i) => (
+                              <FiStar
+                                key={i}
+                                className={`w-4 h-4 ${i < Math.round(product.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
+                              />
+                            ))}
+                            <span className="text-sm text-gray-500 ml-2">
                               ({product.numReviews || 0} {product.numReviews === 1 ? 'review' : 'reviews'})
                             </span>
                           </div>
@@ -425,83 +388,63 @@ export default function ProductsPage() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Pagination */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-16"
+              className="flex flex-col sm:flex-row justify-between items-center mt-12 gap-4"
             >
               <div className="text-sm text-gray-600">
                 Showing {(pagination.currentPage - 1) * pagination.limit + 1}-
-                {Math.min(pagination.currentPage * pagination.limit, pagination.totalProducts)} of{' '}
+                {Math.min(pagination.currentPage * pagination.limit, pagination.totalProducts)} of
                 {pagination.totalProducts} products
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2">
                 <button
                   onClick={() => handlePageChange(pagination.currentPage - 1)}
                   disabled={pagination.currentPage === 1 || loading}
-                  className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-all ${
-                    pagination.currentPage === 1 || loading
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-700 hover:shadow-sm'
-                  }`}
+                  className={`px-4 py-2 rounded-md ${pagination.currentPage === 1 || loading ? 'bg-gray-200' : 'bg-blue-100 hover:bg-blue-200'}`}
                 >
-                  <FiChevronLeft className="w-4 h-4" />
-                  <span>Previous</span>
+                  <FiChevronLeft />
                 </button>
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
-                    let pageNum;
-                    if (pagination.totalPages <= 5) {
-                      pageNum = i + 1;
-                    } else if (pagination.currentPage <= 3) {
-                      pageNum = i + 1;
-                    } else if (pagination.currentPage >= pagination.totalPages - 2) {
-                      pageNum = pagination.totalPages - 4 + i;
-                    } else {
-                      pageNum = pagination.currentPage - 2 + i;
-                    }
-
-                    return (
-                      <button
-                        key={pageNum}
-                        onClick={() => handlePageChange(pageNum)}
-                        disabled={loading}
-                        className={`w-10 h-10 rounded-lg transition-all flex items-center justify-center ${
-                          pagination.currentPage === pageNum
-                            ? 'bg-blue-600 text-white shadow-md'
-                            : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
-                  {pagination.totalPages > 5 && pagination.currentPage < pagination.totalPages - 2 && (
-                    <>
-                      <span className="text-gray-500 px-2">...</span>
-                      <button
-                        onClick={() => handlePageChange(pagination.totalPages)}
-                        disabled={loading}
-                        className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700"
-                      >
-                        {pagination.totalPages}
-                      </button>
-                    </>
-                  )}
-                </div>
+                {[...Array(Math.min(5, pagination.totalPages))].map((_, i) => {
+                  let pageNum;
+                  if (pagination.totalPages <= 5) {
+                    pageNum = i + 1;
+                  } else if (pagination.currentPage <= 3) {
+                    pageNum = i + 1;
+                  } else if (pagination.currentPage >= pagination.totalPages - 2) {
+                    pageNum = pagination.totalPages - 4 + i;
+                  } else {
+                    pageNum = pagination.currentPage - 2 + i;
+                  }
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`px-4 py-2 rounded-md ${pagination.currentPage === pageNum ? 'bg-blue-500 text-white' : 'bg-blue-100 hover:bg-blue-200'}`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+                {pagination.totalPages > 5 && pagination.currentPage < pagination.totalPages - 2 && (
+                  <>
+                    <span className="px-2 text-gray-600">...</span>
+                    <button
+                      onClick={() => handlePageChange(pagination.totalPages)}
+                      className="px-4 py-2 rounded-md bg-blue-100 hover:bg-blue-200"
+                    >
+                      {pagination.totalPages}
+                    </button>
+                  </>
+                )}
                 <button
                   onClick={() => handlePageChange(pagination.currentPage + 1)}
                   disabled={pagination.currentPage === pagination.totalPages || loading}
-                  className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-all ${
-                    pagination.currentPage === pagination.totalPages || loading
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-700 hover:shadow-sm'
-                  }`}
+                  className={`px-4 py-2 rounded-md ${pagination.currentPage === pagination.totalPages || loading ? 'bg-gray-200' : 'bg-blue-100 hover:bg-blue-200'}`}
                 >
-                  <FiChevronRight className="w-4 h-4" />
-                  <span>Next</span>
+                  <FiChevronRight />
                 </button>
               </div>
             </motion.div>
@@ -510,4 +453,4 @@ export default function ProductsPage() {
       </div>
     </div>
   );
-}
+};

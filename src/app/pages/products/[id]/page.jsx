@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { FiStar, FiChevronLeft, FiChevronRight, FiShoppingCart, FiHeart } from 'react-icons/fi';
 import Navbar from '@/src/components/Navbar';
 import Footer from '../../../../components/footer';
+import { use } from 'react';
 
 export default function ProductDetailPage({ params }) {
-  const { id } = params;
+  const { id } = use(params);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,7 +57,6 @@ export default function ProductDetailPage({ params }) {
   };
 
   const handleAddToCart = () => {
-    // Implement your cart logic here
     alert(`${quantity} ${product.name} added to cart`);
   };
 
@@ -302,11 +302,11 @@ export default function ProductDetailPage({ params }) {
                         </button>
                       </div>
                       <button
-                        onClick={handleAddToCart}
+                        onClick={() => router.push('/pages/payment-clone')}
                         className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 transition-colors"
                       >
                         <FiShoppingCart />
-                        <span>Add to Cart</span>
+                        <span>Buy Now</span>
                       </button>
                       <button className="p-3 text-gray-500 hover:text-red-500 border border-gray-200 rounded-lg hover:border-red-200 transition-colors">
                         <FiHeart className="w-5 h-5" />

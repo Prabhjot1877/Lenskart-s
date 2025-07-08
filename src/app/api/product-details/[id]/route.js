@@ -1,10 +1,12 @@
+'ise client'
+
 import Product from '../../../../models/lens';
 import dbConnect from '../../../../lib/dbcollection';
 
 export async function GET(request, { params }) {
-  await dbConnect();
-
   const { id } = params;
+
+  await dbConnect();
 
   try {
     const product = await Product.findById(id);
@@ -35,4 +37,4 @@ export async function GET(request, { params }) {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-} 
+}

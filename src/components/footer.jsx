@@ -20,7 +20,7 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <FaTwitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/jot1877g/" className="text-gray-400 hover:text-white transition-colors">
                 <FaInstagram size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -37,13 +37,13 @@ const Footer = () => {
                 <Link href="/" className="hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-white transition-colors">Products</Link>
+                <Link href="pages/products" className="hover:text-white transition-colors">Products</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link href="pages/about" className="hover:text-white transition-colors">About Us</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+                <Link href="pages/contact" className="hover:text-white transition-colors">Contact</Link>
               </li>
               
             </ul>

@@ -258,23 +258,7 @@ export default function ProductsPage() {
               </select>
             </div>
             <div className="flex items-end gap-2">
-              <div className="flex-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Search
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="search"
-                    ref={searchInputRef}
-                    value={filters.search}
-                    onChange={handleFilterChange}
-                    placeholder="Search by name or brand..."
-                    className="w-full px-3 py-2 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
-                  />
-                  <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                </div>
-              </div>
+              
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.05 }}

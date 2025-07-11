@@ -45,9 +45,7 @@ const Footer = () => {
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
               </li>
-              <li>
-                <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-              </li>
+              
             </ul>
           </div>
 
@@ -77,10 +75,10 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Contact Us</h3>
             <address className="not-italic text-gray-400">
-              <p>123 Vision Street</p>
-              <p>Eyewear City, EC 12345</p>
-              <p className="mt-2">Email: info@visionelegance.com</p>
-              <p>Phone: (123) 456-7890</p>
+              <p>646X+78Q, Chandigarh Road, near Oasis Hotel, Garhshankar, Punjab 144527, India</p>
+              <p>Garhshanker, Punjab, India, 144527</p>
+              <p className="mt-2">Email: Singh123@lenscrafterhub.com</p>
+              <p>Phone: +91 62834 27681</p>
             </address>
             <div className="pt-2">
               <h4 className="font-medium">Newsletter</h4>

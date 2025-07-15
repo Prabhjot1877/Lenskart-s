@@ -20,7 +20,7 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <FaTwitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/jot1877g/" className="text-gray-400 hover:text-white transition-colors">
                 <FaInstagram size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -37,17 +37,15 @@ const Footer = () => {
                 <Link href="/" className="hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-white transition-colors">Products</Link>
+                <Link href="pages/products" className="hover:text-white transition-colors">Products</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link href="pages/about" className="hover:text-white transition-colors">About Us</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+                <Link href="pages/contact" className="hover:text-white transition-colors">Contact</Link>
               </li>
-              <li>
-                <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-              </li>
+              
             </ul>
           </div>
 
@@ -77,10 +75,10 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Contact Us</h3>
             <address className="not-italic text-gray-400">
-              <p>123 Vision Street</p>
-              <p>Eyewear City, EC 12345</p>
-              <p className="mt-2">Email: info@visionelegance.com</p>
-              <p>Phone: (123) 456-7890</p>
+              <p>646X+78Q, Chandigarh Road, near Oasis Hotel, Garhshankar, Punjab 144527, India</p>
+              <p>Garhshanker, Punjab, India, 144527</p>
+              <p className="mt-2">Email: Singh123@lenscrafterhub.com</p>
+              <p>Phone: +91 62834 27681</p>
             </address>
             <div className="pt-2">
               <h4 className="font-medium">Newsletter</h4>

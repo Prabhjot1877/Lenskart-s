@@ -202,7 +202,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-800">Support Team</h3>
-                    <p className="mt-2 text-blue-600">+1 (555) 123-4567</p>
+                    <p className="mt-2 text-blue-600">+91 62834 27681</p>
                     <p className="mt-1 text-gray-500">Mon-Fri, 9am-5pm EST</p>
                   </div>
                 </div>
@@ -218,7 +218,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-800">Email Us</h3>
-                    <p className="mt-2 text-blue-600">support@lenscrafterhub.com</p>
+                    <p className="mt-2 text-blue-600">Singh123@lenscrafterhub.com</p>
                     <p className="mt-1 text-gray-500">Response within 24 hours</p>
                   </div>
                 </div>
@@ -234,9 +234,9 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg font-medium text-gray-800">Studio Visit</h3>
-                    <p className="mt-2 text-blue-600">123 Photography Lane</p>
-                    <p className="mt-1 text-gray-500">New York, NY 10001</p>
+                    <h3 className="text-lg font-medium text-gray-800">Eye Care Center Visit</h3>
+                    <p className="mt-2 text-blue-600">646X+78Q, Chandigarh Road, near Oasis Hotel, Garhshankar, Punjab 144527, India</p>
+                    <p className="mt-1 text-gray-500">Garhshanker, Punjab, India, 144527</p>
                     <p className="mt-2 text-sm text-gray-500">By appointment only</p>
                   </div>
                 </div>

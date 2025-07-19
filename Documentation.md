@@ -4,11 +4,11 @@ SRC
 
           api
                 admin
-                      addproduct
+                    addproduct
                            route.js
-                      login
+                    login
                            route.js
-                      register
+                    register
                            route.js
                          
                 product-details

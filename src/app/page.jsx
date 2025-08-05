@@ -74,12 +74,7 @@ const HomePage = () => {
                 transition={{ delay: 0.6 }}
                 className="mt-8 flex justify-center"
               >
-                <button
-                  onClick={() => router.push('pages/products')}
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300"
-                >
-                  Shop Collection
-                </button>
+
               </motion.div>
             </div>
           </div>
